@@ -24,8 +24,8 @@
                 </div>
                 <nav class="main-menu mobile-menu">
                     <ul>
-                        <li><a class="active" href="{{url('/')}}">Home</a></li>
                         @if(Auth::check())
+                        <li><a class="active" href="{{url('/')}}">Home</a></li>
                         <li><a href="{{url('/profile')}}">Profile</a></li>
                         <li><a href="{{url('/user-orders')}}">Orders</a>
                         </li>

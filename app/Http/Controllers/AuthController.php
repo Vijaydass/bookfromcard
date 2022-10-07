@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\images;
 use App\Models\Orders;
+use App\Models\store;
+use App\Models\bank;
 
 class AuthController extends Controller
 {
@@ -87,9 +89,11 @@ class AuthController extends Controller
                             ->where('orders.id',$id)
                             ->first(['orders.*', 'products.name as product_name','products.image as product_img',
                             'products.price as product_price','products.commission as commission', 'products.color as color', 
-                            'products.varient as varient', 'products.fulfil_date as fulfil_date']);
+                            'products.varient as varient', 'products.fulfil_date as fulfil_date', 'products.bank_id as bank_id', 'products.store_id as store_id' ]);
         $photos = images::where('order_id',$id)->get();
-        return view('user_single_order',compact('orders','photos'));
+        $bank = bank::where('id',$orders->bank_id)->first();
+        $store = store::where('id',$orders->store_id)->first();
+        return view('user_single_order',compact('orders','photos','bank','store'));
     }
     
     public function single_order_update(Request $request)
