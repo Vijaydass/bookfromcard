@@ -4,7 +4,7 @@
     <div class="container">
         <div class="profile-intro mb-4">
             <h2 class="Page-title">My Account</span></h2>
-            <p>Hello Name,<br />
+            <p>Hello {{$user->name}},<br />
                 You can manager your profile here.</p>
             <div class="static-pp">
                 <figure>
