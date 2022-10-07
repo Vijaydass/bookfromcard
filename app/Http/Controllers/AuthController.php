@@ -75,9 +75,11 @@ class AuthController extends Controller
     public function user_orders()
     {
         $orders = Orders::join('products', 'orders.product_id', '=', 'products.id')
+                            ->join('banks', 'banks.id', '=', 'products.bank_id')
+                            ->join('stores', 'stores.id', '=', 'products.store_id')
                             ->where('orders.user_id',\Auth::id())
                             ->orderBy('id', 'DESC')
-                            ->get(['orders.*', 'products.name as product_name','products.image as product_img',
+                            ->get(['orders.*','banks.image as bank_img', 'stores.image as store_img', 'products.name as product_name','products.image as product_img',
                             'products.price as product_price','products.commission as commission', 'products.color as color', 
                             'products.varient as varient', 'products.fulfil_date as fulfil_date']);
         return view('profile_orders',compact('orders'));

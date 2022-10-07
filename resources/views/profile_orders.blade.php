@@ -33,13 +33,13 @@
                     <div>
                         <span>Bank</span>
                         <figure>
-                            <img src="img/HDFC_Bank_Logo.svg.png" alt="">
+                            <img src="{{asset('storage/'.$list->bank_img)}}" alt="">
                         </figure>
                     </div>
                     <div>
                         <span>Store</span>
                         <figure>
-                            <img src="img/HDFC_Bank_Logo.svg.png" alt="">
+                            <img src="{{asset('storage/'.$list->store_img)}}" alt="">
                         </figure>
                     </div>
                 </div>
