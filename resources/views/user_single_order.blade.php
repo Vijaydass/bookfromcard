@@ -1,7 +1,8 @@
 @include('common.header')
-<section class="section mt-120">
-    <div class="row m-1">
-        <div class="col-12">
+<section class="single-order">
+    <div class="container">
+        <h2 class="Page-title text-center">Order Details - <span>{{$orders->order_number}}</span></h2>
+        <div class="row order-item">
             @if(Session::has('message'))
             <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
                 <i class="fa fa-check"></i><strong>Success!</strong> {{ Session::get('message') }}
@@ -25,107 +26,128 @@
             </div>
             @endforeach
             @endif
-            <div class="card my-2">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="row">
-                                <div class="col-md-6 mb-2">
-                                    <img src="{{asset('storage/'.$orders->product_img)}}" alt="" width="80">
-                                </div>
-                                <div class="col-md-6 mb-2">
-                                    <h5 style="font-size: 14px;font-weight: bold;">{{$orders->product_name}}</h5>
-                                    <p class="my-0">{{$orders->varient}}</p>
-                                    <p class="my-0">{{$orders->color}}</p>
-                                    <p class="my-0">Fulfil By - {{date('d M Y', strtotime($orders->fulfil_date))}}</p>
-                                    <p class="my-0">Expected Delivery By -
-                                        {{date('d M Y', strtotime($orders->delivery_date))}}</p>
-                                </div>
+            <div class="col-12 col-lg-3 order-item-design">
+                <h4 class="single-order-titles">Item Detail</h4>
+                <div class="row g-2 g-lg-3">
+                    <div class="col-4 col-lg-5">
+                        <figure>
+                            <img src="{{asset('storage/'.$orders->product_img)}}" alt="">
+                        </figure>
+                    </div>
+                    <div class="col-8 col-lg-7">
+                        <h4 class="order-item-name">{{$orders->product_name}}</h4>
+                        <div class="deal-info-row"><span class="product-list-label">Varient</span> : <span
+                                class="product-list-info">{{$orders->varient}}</span></div>
+                        <div class="deal-info-row"><span class="product-list-label">Color</span> : <span
+                                class="product-list-info">{{$orders->color}}</span></div>
+                        <div class="deal-info-row"><span class="product-list-label">Fullfil By</span> : <span
+                                class="product-list-info">{{date('d M Y', strtotime($orders->fulfil_date))}}</span>
+                        </div>
+                        <div class="deal-info-row"><span class="product-list-label">Expected Delivery Date</span> :
+                            <span class="product-list-info">{{date('d M Y', strtotime($orders->delivery_date))}}</span>
+                        </div>
+                        <div class="deal-info-row"><span class="product-list-label">Price per unit</span> : <span
+                                class="product-list-info">₹ {{$orders->product_price}}</span></div>
+                    </div>
+                    <div class="col-12 col-lg-12">
+                        <div class="deal-bank-merchant">
+                            <div>
+                                <span>Bank</span>
+                                <figure>
+                                    <img src="img/HDFC_Bank_Logo.svg.png" alt="">
+                                </figure>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <form action="{{route('single_order_update.order')}}" method="POST">
-                                @csrf
-                            <div class="row">
-                                    <div class="col-md-6 mb-2">
-                                        <h6 class="p-0 mb-0">Order No :</h6>
-                                        <p class="my-0" style="color:#006fbd;font-weight: 500;"> {{$orders->order_number}}
-                                        </p>
-                                    </div>
-                                    <div class="col-md-6 mb-2">
-                                        <h6 class="p-0 mb-0" style="color:#006fbd;font-weight: 500;">Price </h6>
-                                        <p class="my-0">₹ {{$orders->product_price}}</p>
-                                    </div>
-                                    <div class="col-md-6 mb-2">
-                                        <h6 class="p-0 mb-0">Tracking Id </h6>
-                                        <input name="tracking_id" type="text" class="form-control"
-                                            value="{{$orders->tracking_id}}">
-                                    </div>
-                                    <div class="col-md-6 mb-2">
-                                        <h6 class="p-0 mb-0" style="color:#006fbd;font-weight: 500;">Commission : </h6>
-                                        <p class="my-0">₹ {{$orders->commission}}</p>
-                                    </div>
-                                    <div class="col-md-6 mb-2">
-                                        <h6 class="p-0 mb-0" style="color:#006fbd;font-weight: 500;">OTP : </h6>
-                                        <input name="otp" type="text" class="form-control" placeholder="Enter Otp"
-                                            value="{{$orders->otp}}">
-                                    </div>
-                                    <div class="col-md-6 mb-2">
-                                        <h6 class="p-0 mb-0" style="color:#006fbd;font-weight: 500;">Delivery Status :
-                                        </h6>
-                                        <select class="form-control" name="delivery_status" required>
-                                            <option value="pending"
-                                                <?php if($orders->delivery_status==='pending'){ echo 'selected'; }?>>
-                                                Pending
-                                            </option>
-                                            <option value="delivered"
-                                                <?php if($orders->delivery_status==='delivered'){ echo 'selected'; }?>>
-                                                Delivered
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6 mb-2">
-                                        <input type="hidden" name="orderid" value="{{$orders->id}}" class="form-control"
-                                            required>
-                                        <button type="submit" class="btn btn-success mt-2">Update</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="row">
-                                <div class="col-md-6 mb-2">
-
-                                </div>
-                                <div class="col-md-6 mb-2">
-                                    <h6 class="p-0 mb-0" style="color:#006fbd;font-weight: 500;">You'll Receive :
-                                    </h6>
-                                    <p class="my-0">₹ {{$orders->product_price + $orders->commission}}</p>
-                                </div>
-                                <div class="col-md-6 mb-2">
-                                    <h6 class="p-0 mb-0" style="color:#006fbd;font-weight: 500;">Delivery Verified ?
-                                    </h6>
-                                    <p class="my-0 {{$orders->delivery_status?'text-success':'text-danger'}}">{{$orders->delivery_status==='delivered'?'Yes':'No'}}</p>
-                                </div>
-                                <div class="col-md-6 mb-2">
-                                    <h6 class="p-0 mb-0" style="color:#006fbd;font-weight: 500;">Payment Status ? : </h6>
-                                    <p class="my-0 {{$orders->payment_status?'text-success':'text-danger'}}"
-                                        style="font-weight: 500;">
-                                        {{$orders->payment_status?Str::ucfirst($orders->payment_status):'Not Paid'}}</p>
-                                </div>
+                            <div>
+                                <span>Store</span>
+                                <figure>
+                                    <img src="img/HDFC_Bank_Logo.svg.png" alt="">
+                                </figure>
                             </div>
                         </div>
                     </div>
-                    <h2 class="mt-2">Order Screenshot</h2>
-                    <div class="row">
-                        @foreach($photos as $image)
-                        <div class="col-md">
-                            <img id="uploadPreview" src="{{asset('storage/'.$image->image)}}" style="width: 200px;" />
+                </div>                
+            </div>
+
+            <div class="col-6 col-lg-3 order-user-update">
+                <h4 class="single-order-titles">Customer Update</h4>
+                <form action="{{route('single_order_update.order')}}" method="POST">
+                    @csrf
+                    <div class="orrder-c-details">
+                        <h5>Tracking ID</h5>
+                        <p><input name="tracking_id" type="text" value="{{$orders->tracking_id}}"></p>
+
+                    </div>
+                    <div class="orrder-c-details">
+                        <h5>Notes | OTP</h5>
+                        <p><input name="otp" type="text" placeholder="Enter Otp" value="{{$orders->otp}}"></p>
+                    </div>
+                    <div class="orrder-c-details">
+                        <h5>Delivery Status</h5>
+                        <div>
+                            <select class="form-control" name="delivery_status" required>
+                                <option value="pending"
+                                    <?php if($orders->delivery_status==='pending'){ echo 'selected'; }?>>
+                                    Pending
+                                </option>
+                                <option value="delivered"
+                                    <?php if($orders->delivery_status==='delivered'){ echo 'selected'; }?>>
+                                    Delivered
+                                </option>
+                            </select>
                         </div>
-                        @endforeach
+                    </div>
+                    <div class="orrder-c-details">
+                        <h5>Screenshot</h5>
+                        <div>
+                            <input type="file">
+                            <a href="#" class="view-image">View image</a>
+                        </div>
+                    </div>
+                    <button class="site-btn">Update</button>
+                </form>
+            </div>
+            <div class="col-6 col-lg-3 order-admin-update">
+                <h4 class="single-order-titles">Admin Update</h4>
+                <div class="orrder-c-details">
+                    <h5>Delivery Verified</h5>
+                    <p class="{{$orders->delivery_status?'text-success':'text-danger'}}">
+                        {{$orders->delivery_status==='delivered'?'Yes':'No'}}</p>
+                </div>
+                <div class="orrder-c-details">
+                    <h5>Payment Status</h5>
+                    <p class="{{$orders->payment_status?'text-success':'text-danger'}}">
+                        {{$orders->payment_status?Str::ucfirst($orders->payment_status):'Not Paid'}}</p>
+                </div>
+
+            </div>
+            <div class="col-12 col-lg-3 g-2 g-lg-3">
+                <div class="order-list-calc">
+                    <div class="order-calc-box deal-spend">
+                        <span class="box-tile">You spent</span>
+                        <span class="box-amount">₹ {{$orders->product_price}}</span>
+
+                    </div>
+                    <div class="order-calc-box deal-earn">
+                        <span class="box-tile">Your commision <span
+                                class="commsion-status">({{$orders->payment_status?Str::ucfirst($orders->payment_status):'Pending'}})</span></span>
+                        <span class="box-amount">₹ {{$orders->commission}}</span>
+
+                    </div>
+                    <div class="order-calc-box deal-receive">
+                        <span class="box-tile">You will receive</span>
+                        <span class="box-amount">₹ {{$orders->product_price + $orders->commission}}</span>
                     </div>
                 </div>
             </div>
         </div>
+        <h2 class="mt-2">Order Screenshot</h2>
+                <div class="row">
+                    @foreach($photos as $image)
+                    <div class="col-md">
+                        <img id="uploadPreview" src="{{asset('storage/'.$image->image)}}" style="width: 200px;" />
+                    </div>
+                    @endforeach
+                </div>
+    </div>
 </section>
 @include('common.footer')

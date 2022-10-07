@@ -1,27 +1,23 @@
-<section class="footer-area footer-dark">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-6">
-                <div class="footer-logo text-center">
-                    <a class="mt-30" href="{{url('/')}}">
-                        <img src="{{asset('/logo.png')}}" alt="Logo" width="150"></a>
-                </div>
-                <ul class="social text-center mt-20">
-                    <li><a href="#"><i class="lni lni-facebook-oval"></i></a></li>
-                    <li><a href="https://wa.me/918386801119"><i class="lni lni-whatsapp"></i></a></li>
-                    <li><a href="#"><i class="lni lni-telegram-original"></i></a></li>
-                </ul>
-                <div class="footer-support text-center">
-                    <span class="mail">Need help? Send us a mail at:<a href="bookfromcards@gmail.com"
-                            class="__cf_email__">bookfromcards@gmail.com</a></span>
-                </div>
-                 <div class="copyright text-center mt-20">
-                    <p class="text">Designed by <a href="https://atozdeal.in" rel="nofollow">Atozdeal.in</a></p>
-                </div>
+ <!-- Footer Section Begin -->
+ <footer class="footer-section">
+        <div class="social-links-warp">
+			<div class="container">
+				<div class="social-links text-center">
+					<a href="" class="telegram"><i class="fa fa-telegram"></i><span>telegram</span></a>
+					<a href="" class="pinterest"><i class="fa fa-whatsapp"></i><span>whatsapp</span></a>
+				</div>
+			</div>
+
+<div class="container text-center pt-5">
+                <p>
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Designed by <a href="https://atozdeal.in" rel="nofollow">Atozdeal.in</a></p>
             </div>
-        </div>
-    </div>
-</section>
+
+
+		</div>
+    </footer>
+    <!-- Footer Section End -->
+
 <!-- Login Form Modal -->
 <div class="modal fade" id="submitModal" aria-hidden="true" style="background: #0000007a;">
     <div class="modal-dialog modal-dialog-centered">

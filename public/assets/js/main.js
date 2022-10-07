@@ -1,1 +1,174 @@
-$(function(){"use strict";$(window).on('load',function(event){$('.preloader').delay(500).fadeOut(500);});$(window).on('scroll',function(event){var scroll=$(window).scrollTop();if(scroll<20){$(".navbar-area").removeClass("sticky");$(".navbar-area img").attr("src","/logo.png");}else{$(".navbar-area").addClass("sticky");$(".navbar-area img").attr("src","/logo.png");}});var scrollLink=$('.page-scroll');$(window).scroll(function(){var scrollbarLocation=$(this).scrollTop();scrollLink.each(function(){var sectionOffset=$(this.hash).offset().top-73;if(sectionOffset<=scrollbarLocation){$(this).parent().addClass('active');$(this).parent().siblings().removeClass('active');}});});$(".navbar-nav a").on('click',function(){$(".navbar-collapse").removeClass("show");});$(".navbar-toggler").on('click',function(){$(this).toggleClass("active");});$(".navbar-nav a").on('click',function(){$(".navbar-toggler").removeClass('active');});$('[href="#side-menu-left"], .overlay-left').on('click',function(event){$('.sidebar-left, .overlay-left').addClass('open');});$('[href="#close"], .overlay-left').on('click',function(event){$('.sidebar-left, .overlay-left').removeClass('open');});$('.slider-items-active').slick({infinite:true,slidesToShow:3,slidesToScroll:1,speed:800,arrows:true,prevArrow:'<span class="prev"><i class="lni lni-arrow-left"></i></span>',nextArrow:'<span class="next"><i class="lni lni-arrow-right"></i></span>',dots:true,autoplay:true,autoplaySpeed:5000,responsive:[{breakpoint:1200,settings:{slidesToShow:3,}},{breakpoint:992,settings:{slidesToShow:2,}},{breakpoint:768,settings:{slidesToShow:2,}},{breakpoint:576,settings:{slidesToShow:1,arrows:false,}}]});$('.container').imagesLoaded(function(){var $grid=$('.grid').isotope({transitionDuration:'1s'});$('.portfolio-menu ul').on('click','li',function(){var filterValue=$(this).attr('data-filter');$grid.isotope({filter:filterValue});});$('.portfolio-menu ul li').on('click',function(event){$(this).siblings('.active').removeClass('active');$(this).addClass('active');event.preventDefault();});});$('.testimonial-active').slick({dots:false,arrows:true,prevArrow:'<span class="prev"><i class="lni lni-arrow-left"></i></span>',nextArrow:'<span class="next"><i class="lni lni-arrow-right"></i></span>',infinite:true,autoplay:true,autoplaySpeed:5000,speed:800,slidesToShow:1,});$('.video-popup').magnificPopup({type:'iframe'});$('.image-popup').magnificPopup({type:'image',gallery:{enabled:true}});$(window).on('scroll',function(event){if($(this).scrollTop()>600){$('.back-to-top').fadeIn(200)}else{$('.back-to-top').fadeOut(200)}});$('.back-to-top').on('click',function(event){event.preventDefault();$('html, body').animate({scrollTop:0,},1500);});});
+/*  ---------------------------------------------------
+    Template Name: Violet 
+    Description: Violet ecommerce Html Template
+    Author: Colorlib
+    Author URI: https://colorlib.com/
+    Version: 1.0
+    Created: Colorlib
+---------------------------------------------------------  */
+
+'use strict';
+
+(function ($) {
+
+    /*------------------
+        Preloader
+    --------------------*/
+    $(window).on('load', function () {
+        $(".loader").fadeOut();
+        $("#preloder").delay(200).fadeOut("slow");
+
+        /*------------------
+		    Product filter
+	    --------------------*/
+        if ($('#product-list').length > 0) {
+            var containerEl = document.querySelector('#product-list');
+            var mixer = mixitup(containerEl);
+        }
+    });
+
+    /*------------------
+        Background Set
+    --------------------*/
+    $('.set-bg').each(function () {
+        var bg = $(this).data('setbg');
+        $(this).css('background-image', 'url(' + bg + ')');
+    });
+
+    /*------------------
+		Navigation
+	--------------------*/
+    $(".mobile-menu").slicknav({
+        appendTo: '.inner-header',
+        label: '',
+        allowParentLinks: true,
+        closedSymbol: '<i class="fa fa-angle-right"></i>',
+		openedSymbol: '<i class="fa fa-angle-down"></i>'
+    });
+
+    /*------------------
+		Search model
+	--------------------*/
+	$('.search-trigger').on('click', function() {
+		$('.search-model').fadeIn(400);
+	});
+
+	$('.search-close-switch').on('click', function() {
+		$('.search-model').fadeOut(400,function(){
+			$('#search-input').val('');
+		});
+	});
+
+    /*------------------
+        Carousel Slider
+    --------------------*/
+     $(".hero-items").owlCarousel({
+        loop: true,
+        margin: 0,
+        nav: true,
+        items: 1,
+        dots: true,
+        animateOut: 'fadeOut',
+        animateIn: 'fadeIn',
+        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+        smartSpeed: 1200,
+        autoplayHoverPause: true,
+        mouseDrag: false,
+        autoplay: false,
+    });
+
+    /*------------------
+        Carousel Slider
+    --------------------*/
+    $(".logo-items").owlCarousel({
+        loop: true,
+		nav: false,
+		dots: false,
+		margin : 40,
+		autoplay: true,
+        responsive: {
+            0: {
+                items: 2
+            },
+            480: {
+                items: 2
+            },
+            768: {
+                items: 3
+            },
+            992: {
+                items: 5
+            }
+        }
+    });
+
+
+    /*------------------
+        Carousel Slider
+    --------------------*/
+    $(".product-slider").owlCarousel({
+        loop: true,
+        margin: 0,
+        nav: false,
+        items: 1,
+        dots: true,
+        autoplay: true,
+    });
+    
+
+    /*------------------
+        Magnific Popup
+    --------------------*/
+    $('.pop-up').magnificPopup({
+        type: 'image'
+    });
+
+    /*-------------------
+		Sort Select
+	--------------------- */
+    $('.sort').niceSelect();
+
+    /*-------------------
+		Cart Select
+	--------------------- */
+    $('.cart-select').niceSelect();
+
+    /*-------------------
+		Quantity change
+	--------------------- */
+    var proQty = $('.pro-qty');
+    proQty.prepend('<span class="dec qtybtn">-</span>');
+    proQty.append('<span class="inc qtybtn">+</span>');
+    proQty.on('click', '.qtybtn', function () {
+        var $button = $(this);
+        var oldValue = $button.parent().find('input').val();
+        if ($button.hasClass('inc')) {
+            var newVal = parseFloat(oldValue) + 1;
+        } else {
+            // Don't allow decrementing below zero
+            if (oldValue > 0) {
+                var newVal = parseFloat(oldValue) - 1;
+            } else {
+                newVal = 0;
+            }
+        }
+        $button.parent().find('input').val(newVal);
+    });
+
+    /*-------------------
+		Radio Btn
+	--------------------- */
+    $(".shipping-info .cs-item label").on('click', function () {
+        $(".shipping-info .cs-item label").removeClass('active');
+        $(this).addClass('active');
+    });
+
+    $(".checkout-form .diff-addr label").on('click', function () {
+        $(this).toggleClass('active');
+    });
+
+    $(".payment-method ul li label").on('click', function () {
+        $(this).toggleClass('active');
+    });
+
+})(jQuery);

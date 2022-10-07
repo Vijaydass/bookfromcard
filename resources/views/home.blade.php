@@ -1,59 +1,50 @@
 @include('common.header')
-<section class="slider_area mt-96">
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-            @foreach($slider as $item)
-            <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                <img class="d-block w-100" src="{{asset('storage/'.$item->image)}}">
-            </div>
-            @endforeach            
+<!-- Hero Slider Begin -->
+<section class="hero-slider">
+    <div class="hero-items owl-carousel">
+        @foreach($slider as $item)
+        <!-- <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                <img class="d-block w-100" src="">
+            </div> -->
+        <div class="single-slider-item set-bg" data-setbg="{{asset('storage/'.$item->image)}}">
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
+        @endforeach
     </div>
 </section>
+<!-- Hero Slider End -->
 
-
-<section id="services" class="features-area">
+<!-- Latest Product Begin -->
+<section class="latest-products spad">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-6 col-md-10">
-                <div class="section-title text-center pb-10">
-                @if(Session::has('message'))
-                <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
-                    <i class="fa fa-check"></i><strong>Success!</strong> {{ Session::get('message') }}
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
-                        aria-label="Close"></button>
-                </div>
-                @endif
-                @if(Session::has('error'))
-                <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
-                    <i class="fa fa-check"></i><strong>Error!</strong> {{ Session::get('error') }}
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
-                        aria-label="Close"></button>
-                </div>
-                @endif
-                @if(count($product) > 0)
-                    <h3 class="title">Current Requirements</h3>
-                @else
-                    <h4 class="title text-warning">Sorry no deal is available right now</h4>
-                @endif
+        <div class="product-filter">
+            <div class="row">
+                <div class="col-12 text-left">
+                    <div class="section-title">
+                        @if(count($product) > 0)
+                        <h2 class="text-sm-center">Current Requirements</h2>
+                        @else
+                        <h4 class="text-sm-center text-warning">Sorry no deal is available right now</h4>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
-        @if(count($product) > 0)
-        <div class="row justify-content-center">
+        <div class="row" id="product-list">
+            @if(Session::has('message'))
+            <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
+                <i class="fa fa-check"></i><strong>Success!</strong> {{ Session::get('message') }}
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
+                    aria-label="Close"></button>
+            </div>
+            @endif
+            @if(Session::has('error'))
+            <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
+                <i class="fa fa-check"></i><strong>Error!</strong> {{ Session::get('error') }}
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
+                    aria-label="Close"></button>
+            </div>
+            @endif
+            @if(count($product) > 0)
             @foreach($product as $item)
             @if(Str::lower($item->store->name) === 'amazon')
             <?php 
@@ -65,51 +56,108 @@
               $full_url = $item->url;
             ?>
             @endif
+            <div class="col-6 col-lg-4 g-2 g-lg-3">
+                <div class="deal-design">
+                    <div class="row">
+                        <div class="col-12">
+                            <h4>{{$item->name}}</h4>
+                            <div class="qty-stock"><span>{{$item->quantity}} Pcs</span></div>
+                        </div>
+                    </div>
+                    <div class="row deal-row align-items-center g-2 g-lg-3">
+                        <div class="col-3 col-lg-5">
+                            <figure>
+                                <a href="#"><img src="{{asset('storage/'.$item->image)}}" alt=""></a>
+                            </figure>
+                        </div>
+                        <div class="col-9 col-lg-7">
+                            <div class="deal-info-row"><span class="product-list-label">Varient</span> : <span
+                                    class="product-list-info">{{$item->varient}}</span></div>
+                            <div class="deal-info-row"><span class="product-list-label">Color</span> : <span
+                                    class="product-list-info">{{$item->color}}</span></div>
+                            <div class="deal-info-row"><span class="product-list-label">Fulfill By</span> : <span
+                                    class="product-list-info">{{date('d M Y', strtotime($item->fulfil_date))}}</span></div>
+                            <hr>
+                            <div class="deal-info-row"><span class="product-list-label">Price per unit</span> : <span
+                                    class="product-list-info">{{$item->price}}</span></div>
+                            <div class="deal-info-row"><span class="product-list-label">Commision</span> : <span
+                                    class="product-list-info">{{$item->commission}}</span></div>
+                        </div>
+                    </div>
+                    <div class="row deal-footer g-2">
+                        <div class="col-12 col-lg-8">
+                            <div class="deal-bank-merchant">
+                                <figure>
+                                    <img src="{{asset('storage/'.$item->store->image)}}" alt="">
+                                </figure>
+                                <figure>
+                                    <img src="{{asset('storage/'.$item->bank->image)}}" alt="">
+                                </figure>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                        @if(Auth::check())
+                        <a href="{{url('fullfill-order/'.$item->id)}}" class="site-btn w-100 text-center" >See
+                            More Details</a>
+                        @else
+                        <a href="#" class="site-btn w-100 text-center" onClick="loginModal()">Fulfill Order</a>
+                        @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+            @endif
+        </div>
+    </div>
+</section>
+<!-- Latest Product End -->
+
+<!-- <section id="services" class="features-area">
+    <div class="container">        
+
+        <div class="row justify-content-center">
+
             <div class="col-lg-4 col-md-7 col-sm-9">
                 <div class="single-features mt-30 pb-0 pt-2">
                     <div class="row">
                         <div class="col-6">
-                            <p class="product-title">{{$item->name}}</p>
+                            <p class="product-title"></p>
                         </div>
                         <div class="col-6">
-                            <button class="features-btn">Quantity <span class="feat-span">{{$item->quantity}}
+                            <button class="features-btn">Quantity <span class="feat-span">
                                     Peice</span></button>
                         </div>
                     </div>
                     <div class="features-title-icon row">
                         <div class="col-6">
-                            <img class="shape" src="{{asset('storage/'.$item->image)}}" alt="Shape"
+                            <img class="shape" src="" alt="Shape"
                                 style="width: 150px;">
                         </div>
                         <div class="features-icon col-6">
-                            <p class="feat-p">Varient : <span class="feat-span">{{$item->varient}}</span></p>
-                            <p class="feat-p">Color : <span class="feat-span">{{$item->color}}</span></p>
-                            <p class="feat-p">Fulfil By : <span class="feat-span">{{date('d M Y', strtotime($item->fulfil_date))}}</span></p>
+                            <p class="feat-p">Varient : <span class="feat-span"></span></p>
+                            <p class="feat-p">Color : <span class="feat-span"></span></p>
+                            <p class="feat-p">Fulfil By : <span
+                                    class="feat-span"></span></p>
                             <hr style="margin: 5px!important;">
-                            <p class="feat-p">Price Per Unit : <span class="feat-span">{{$item->price}}</span></p>
-                            <p class="feat-p">Commission : <span class="feat-span">{{$item->commission}}</span></p>
+                            <p class="feat-p">Price Per Unit : <span class="feat-span"></span></p>
+                            <p class="feat-p">Commission : <span class="feat-span"></span></p>
                         </div>
                     </div>
                     <div class="features-content flex row">
                         <div class="feature-image col-6 my-2">
-                            <img src="{{asset('storage/'.$item->store->image)}}" height="50">
+                            <img src="" height="50">
                         </div>
                         <div class="feature-second-image flex col-6 my-2" style="margin: auto;">
-                            <img src="{{asset('storage/'.$item->bank->image)}}" height="50">
+                            <img src="" height="50">
                         </div>
-                        @if(Auth::check())
-                        <a href="{{url('fullfill-order/'.$item->id)}}" class="features-btn" style="width: 100%;padding: 2px 9px;font-size: 14px;font-weight: 500;">See
-                            More Details</a>
-                        @else
-                        <a href="#" class="features-btn" style="width: 100%;padding: 2px 9px;font-size: 14px;font-weight: 500;" onClick="loginModal()">See More
-                            Details</a>
-                        @endif
+                        
                     </div>
                 </div>
             </div>
-            @endforeach
+
         </div>
-        @endif
+
     </div>
-</section>
+</section> -->
 @include('common.footer')

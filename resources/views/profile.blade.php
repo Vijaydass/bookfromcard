@@ -1,8 +1,16 @@
 @include('common.header')
-<section class="section profile mt-120">
-    <div class="row m-5">
-
-        <div class="col-12">
+<!-- Latest Product Begin -->
+<section class="my-account">
+    <div class="container">
+        <div class="profile-intro mb-4">
+            <h2 class="Page-title">My Account</span></h2>
+            <p>Hello Name,<br />
+                You can manager your profile here.</p>
+            <div class="static-pp">
+                <figure>
+                    <img src="img/user.png" alt="">
+                </figure>
+            </div>
             @if(Session::has('message'))
             <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
                 <i class="fa fa-check"></i><strong>Success!</strong> {{ Session::get('message') }}
@@ -26,153 +34,38 @@
             </div>
             @endforeach
             @endif
-            <div class="card">
-                <div class="card-body pt-3">
-                <form action="{{route('profile_update.user')}}" method="POST">
-                                @csrf
-                                <div class="row mb-3">
-                                    <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Name</label>
-                                    <div class="col-md-8 col-lg-9">
-                                        <input name="name" type="text" class="form-control" id="fullName"
-                                            value="{{$user->name}}">
-                                    </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
-                                    <div class="col-md-8 col-lg-9">
-                                        <input name="phone" type="text" class="form-control" id="Phone"
-                                            value="{{$user->phone}}">
-                                    </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
-                                    <div class="col-md-8 col-lg-9">
-                                        <input name="email" type="email" class="form-control" id="Email" disabled
-                                            value="{{$user->email}}">
-                                    </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Referal Url</label>
-                                    <div class="col-md-8 col-lg-9">
-                                        <input type="text" class="form-control" id="Linkedin"
-                                            value="{{url('register/'.$user->referral_token)}}">
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="Email" class="col-md-4 col-lg-3 col-form-label">New Password</label>
-                                    <div class="col-md-8 col-lg-9">
-                                        <input name="password" type="text" class="form-control"
-                                            placeholder="Enter Your New Password">
-                                    </div>
-                                </div>
-                                <input type="hidden" name="hiddenid" value="{{$user->id}}" class="form-control"
-                                    required>
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-primary">Save Changes</button>
-                                </div>
-                            </form>
-                    <!-- Bordered Tabs -->
-                    <!-- <ul class="nav nav-tabs nav-tabs-bordered">
-
-                        <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="tab"
-                                data-bs-target="#profile-overview">Orders</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Profile</a>
-                        </li>
-
-                    </ul>
-                    <div class="tab-content pt-2">
-
-                        <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                            <table class="table table-borderless">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Product Image</th>
-                                        <th scope="col">Product Name</th>
-                                        <th scope="col">Price</th>
-                                        <th scope="col">Receive</th>
-                                        <th scope="col">Earn</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($orders as $list)
-                                    <tr>
-                                        <td>
-                                            <img src="{{asset('storage/'.$list->product_img)}}" alt=""
-                                                    width="80"></td>
-                                        <td><a href="#" class="text-primary fw-bold">{{$list->product_name}}</a></td>
-                                        <td>₹ {{$list->product_price}}</td>
-                                        <td class="fw-bold">₹ {{$list->product_price + $list->commission}}</td>
-                                        <td>₹ {{$list->commission}}</td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
-
-                            <form action="{{route('profile_update.user')}}" method="POST">
-                                @csrf
-                                <div class="row mb-3">
-                                    <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Name</label>
-                                    <div class="col-md-8 col-lg-9">
-                                        <input name="name" type="text" class="form-control" id="fullName"
-                                            value="{{$user->name}}">
-                                    </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
-                                    <div class="col-md-8 col-lg-9">
-                                        <input name="phone" type="text" class="form-control" id="Phone"
-                                            value="{{$user->phone}}">
-                                    </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
-                                    <div class="col-md-8 col-lg-9">
-                                        <input name="email" type="email" class="form-control" id="Email" disabled
-                                            value="{{$user->email}}">
-                                    </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Referal Url</label>
-                                    <div class="col-md-8 col-lg-9">
-                                        <input type="text" class="form-control" id="Linkedin"
-                                            value="{{url('register/'.$user->referral_token)}}">
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <label for="Email" class="col-md-4 col-lg-3 col-form-label">New Password</label>
-                                    <div class="col-md-8 col-lg-9">
-                                        <input name="password" type="text" class="form-control"
-                                            placeholder="Enter Your New Password">
-                                    </div>
-                                </div>
-                                <input type="hidden" name="hiddenid" value="{{$user->id}}" class="form-control"
-                                    required>
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-primary">Save Changes</button>
-                                </div>
-                            </form>
-
-                        </div>
-
-                    </div> -->
-
-                </div>
+        </div>
+        <div class="row mb-4 g-4">
+            <div class="col-12 col-lg-3 d-none d-sm-block">
             </div>
-
+            <div class="col-12 col-lg-6 profile-edit">
+            <form action="{{route('profile_update.user')}}" method="POST">
+                        @csrf
+                    <div class="">
+                        <label>Full Name</label>
+                        <input name="name" type="text" value="{{$user->name}}">
+                    </div>
+                    <div class="">
+                        <label>Phone</label>
+                        <input name="phone" type="text" value="{{$user->phone}}">
+                    </div>
+                    <div class="">
+                        <label>Email</label>
+                        <input name="email" type="email" disabled
+                                    value="{{$user->email}}">
+                    </div>
+                    <div class="">
+                        <label>New Password</label>
+                        <input name="password" type="text" placeholder="Enter Your New Password">
+                    </div>
+                    <input type="hidden" name="hiddenid" value="{{$user->id}}" class="form-control" required>
+                    <button class="site-btn">Update Profile</button>
+                </form>
+            </div>
+            <div class="col-12 col-lg-3 d-none d-sm-block">
+            </div>
         </div>
     </div>
 </section>
+<!-- Latest Product End -->
 @include('common.footer')
