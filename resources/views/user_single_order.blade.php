@@ -65,7 +65,7 @@
                             </div>
                         </div>
                     </div>
-                </div>                
+                </div>
             </div>
 
             <div class="col-6 col-lg-3 order-user-update">
@@ -141,13 +141,13 @@
             </div>
         </div>
         <h2 class="mt-2">Order Screenshot</h2>
-                <div class="row">
-                    @foreach($photos as $image)
-                    <div class="col-md">
-                        <img id="uploadPreview" src="{{asset('storage/'.$image->image)}}" style="width: 200px;" />
-                    </div>
-                    @endforeach
-                </div>
+        <div class="row">
+            @foreach($photos as $image)
+            <div class="col-md">
+                <img id="uploadPreview" src="{{asset('storage/'.$image->image)}}" style="width: 200px;" />
+            </div>
+            @endforeach
+        </div>
     </div>
 </section>
 @include('common.footer')

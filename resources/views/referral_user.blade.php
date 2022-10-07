@@ -9,15 +9,15 @@
                     <p>Total Referral<br />Cashback Earned</p>
                 </div>
                 <div class="col-6 text-center">
-                    <h4>4</h4>
+                    <h4>{{$total}}</h4>
                     <p>Friends Joined</p>
                 </div>
             </div>
         </div>
         <div class="rne-dash-content">
+            @if(count($data)>0)
             <h4 class="text-left">My Network</h4>
             <div class="rne-user-network">
-                @if(count($data)>0)
                 @foreach($data as $list)
                 <table>
                     <thead>
@@ -38,10 +38,10 @@
                     </tbody>
                 </table>
                 @endforeach
-                @else
-                <h4 class="title text-warning">Sorry no Referral User is available right now</h4>
-                @endif
             </div>
+            @else
+            <h4 class="title text-warning">Sorry no Referral User is available right now</h4>
+            @endif
         </div>
 
     </div>
