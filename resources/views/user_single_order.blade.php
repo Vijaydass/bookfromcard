@@ -100,9 +100,9 @@
                         <h5>Screenshot</h5>
                         <div>
                             <input type="file">
-                            <a href="#" class="view-image">View image</a>
                         </div>
                     </div>
+                    <input type="hidden" name="orderid" value="{{$orders->id}}" required>
                     <button class="site-btn">Update</button>
                 </form>
             </div>

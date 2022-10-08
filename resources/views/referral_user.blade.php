@@ -9,7 +9,7 @@
                     <p>Total Referral<br />Cashback Earned</p>
                 </div>
                 <div class="col-6 text-center">
-                    <h4>{{$total}}</h4>
+                    <h4>{{$user}}</h4>
                     <p>Friends Joined</p>
                 </div>
             </div>

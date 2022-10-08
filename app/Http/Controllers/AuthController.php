@@ -100,6 +100,7 @@ class AuthController extends Controller
     
     public function single_order_update(Request $request)
     {
+        
         $order = Orders::find($request->post('orderid'));
         $order->otp = $request->post('otp');
         $order->delivery_status = $request->post('delivery_status');
@@ -127,7 +128,8 @@ class AuthController extends Controller
                             'products.price as product_price','products.commission as commission', 'products.color as color', 
                             'products.varient as varient', 'products.fulfil_date as fulfil_date']);
         $total = $data->count();
-        return view('referral_user',compact('data','total'));
+        $user = $data->groupBy('user_id')->count();
+        return view('referral_user',compact('data','total','user'));
     }
 
     public function profile_update(Request $request){

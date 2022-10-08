@@ -12,7 +12,46 @@
 
 <section class="latest-products spad">
     <div class="container">
+        @if(Session::has('message'))
+            <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
+                <i class="fa fa-check"></i><strong>Success!</strong> {{ Session::get('message') }}
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
+                    aria-label="Close"></button>
+            </div>
+            @endif
+            @if(Session::has('errormessage'))
+            <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
+                <strong>Error!</strong> {{ Session::get('errormessage') }}
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
+                    aria-label="Close"></button>
+            </div>
+            @endif
+            @if ($errors->any())
+            @foreach ($errors->all() as $error)
+            <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
+                <i class="fa fa-close"></i><strong>Error!</strong> {{ $error }}
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
+                    aria-label="Close"></button>
+            </div>
+            @endforeach
+            @endif
         <div class="row justify-content-md-center gy-3" id="single-deal">
+            <div class="col-12 col-lg-3">
+                <div class="deal-calc">
+                    <div class="single-deal-box deal-spend">
+                        <span class="box-amount">₹ {{$product->price}}</span>
+                        <span class="box-tile">You will spend</span>
+                    </div>
+                    <div class="single-deal-box deal-receive">
+                        <span class="box-amount">₹ {{$product->price + $product->commission}}</span>
+                        <span class="box-tile">You will receive</span>
+                    </div>
+                    <div class="single-deal-box deal-earn">
+                        <span class="box-amount">₹ {{$product->commission}}</span>
+                        <span class="box-tile">You will earn</span>
+                    </div>
+                </div>
+            </div>
             <div class="col-12 col-lg-9 single-deal-details">
                 <div class="row gy-3">
                     <div class="col-12 col-lg-5">
@@ -109,26 +148,9 @@
                                 <a href="{{url('/')}}" class="btn btn-warning submit mt-2" data-abc="true"> <i
                                         class="fa fa-chevron-left"></i> Back to Deals</a>
 
-                                <button type="submit" class="btn btn-warning submit mt-2" data-abc="true">
-                                    <i class="fa fa-chevron-right"></i>Submit</button>
+                                <button type="submit" class="btn btn-warning submit mt-2" data-abc="true">Submit <i class="fa fa-chevron-right"></i></button>
                             </form>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-3">
-                <div class="deal-calc">
-                    <div class="single-deal-box deal-spend">
-                        <span class="box-amount">₹ {{$product->price}}</span>
-                        <span class="box-tile">You will spend</span>
-                    </div>
-                    <div class="single-deal-box deal-receive">
-                        <span class="box-amount">₹ {{$product->price + $product->commission}}</span>
-                        <span class="box-tile">You will receive</span>
-                    </div>
-                    <div class="single-deal-box deal-earn">
-                        <span class="box-amount">₹ {{$product->commission}}</span>
-                        <span class="box-tile">You will earn</span>
                     </div>
                 </div>
             </div>

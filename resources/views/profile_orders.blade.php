@@ -2,6 +2,14 @@
 
 <section class="orders-listing">
     <div class="container">
+        @if(Session::has('message'))
+            <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
+                <i class="fa fa-check"></i><strong>Success!</strong> {{ Session::get('message') }}
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
+                    aria-label="Close"></button>
+            </div>
+            @endif
+        @if(count($orders)>0)
         <h2 class="Page-title text-center">Orders List</span></h2>
         @foreach($orders as $list)
         <a href="{{url('user-order/'.$list->id)}}" style="text-decoration: none;color: black;width: 100%;">
@@ -89,6 +97,9 @@
         </div>
         </a>
         @endforeach
+        @else
+        <h4 class="title text-warning">Sorry no Orders is available right now</h4>
+        @endif
     </div>
 </section>
 @include('common.footer')
