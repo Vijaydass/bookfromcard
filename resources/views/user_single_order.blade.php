@@ -84,16 +84,8 @@
                     <div class="orrder-c-details">
                         <h5>Delivery Status</h5>
                         <div>
-                            <select class="form-control" name="delivery_status" required>
-                                <option value="pending"
-                                    <?php if($orders->delivery_status==='pending'){ echo 'selected'; }?>>
-                                    Pending
-                                </option>
-                                <option value="delivered"
-                                    <?php if($orders->delivery_status==='delivered'){ echo 'selected'; }?>>
-                                    Delivered
-                                </option>
-                            </select>
+                            <p class="{{$orders->delivery_status==='delivered'?'text-success':'text-danger'}}">
+                            {{$orders->delivery_status==='delivered'?'Yes':'No'}}</p>
                         </div>
                     </div>
                     <div class="orrder-c-details">
@@ -103,6 +95,7 @@
                         </div>
                     </div>
                     <input type="hidden" name="orderid" value="{{$orders->id}}" required>
+                    <input type="hidden" name="delivery_status" value="{{$orders->delivery_status}}" required>
                     <button class="site-btn">Update</button>
                 </form>
             </div>
@@ -110,7 +103,7 @@
                 <h4 class="single-order-titles">Admin Update</h4>
                 <div class="orrder-c-details">
                     <h5>Delivery Verified</h5>
-                    <p class="{{$orders->delivery_status?'text-success':'text-danger'}}">
+                    <p class="{{$orders->delivery_status==='delivered'?'text-success':'text-danger'}}">
                         {{$orders->delivery_status==='delivered'?'Yes':'No'}}</p>
                 </div>
                 <div class="orrder-c-details">
