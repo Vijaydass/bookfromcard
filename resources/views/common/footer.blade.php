@@ -3,8 +3,8 @@
         <div class="social-links-warp">
 			<div class="container">
 				<div class="social-links text-center">
-					<a href="" class="telegram"><i class="fa fa-telegram"></i><span>telegram</span></a>
-					<a href="" class="pinterest"><i class="fa fa-whatsapp"></i><span>whatsapp</span></a>
+					<a href="https://t.me/bookfromcards" class="telegram"><i class="fa fa-telegram"></i><span>telegram</span></a>
+					<a href="http://wa.me/+918386801119" class="pinterest"><i class="fa fa-whatsapp"></i><span>whatsapp</span></a>
 				</div>
 			</div>
 

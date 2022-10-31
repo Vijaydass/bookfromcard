@@ -17,7 +17,7 @@
                             @csrf
                             @method('post')
                             <div class="form-group">
-                                <label>Otp</label>
+                                <label>Please enter 6 digit otp sent on your E-mail and start earning</label>
                                 <input type="text" name="otp" class="form-control" placeholder="otp" />
                                 @if ($errors->has('name'))
                                 <p class="text-danger">{{ $errors->first('name') }}</p>
