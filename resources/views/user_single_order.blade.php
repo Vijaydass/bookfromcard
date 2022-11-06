@@ -85,7 +85,7 @@
                         <h5>Delivery Status</h5>
                         <div>
                             <p class="{{$orders->delivery_status==='delivered'?'text-success':'text-danger'}}">
-                            {{$orders->delivery_status==='delivered'?'Yes':'No'}}</p>
+                            {{$orders->delivery_status==='delivered'?'Delivered':'Not Delivered'}}</p>
                         </div>
                     </div>
                     <div class="orrder-c-details">
@@ -120,7 +120,7 @@
                         <span class="box-amount">₹ {{$orders->product_price}}</span>
 
                     </div>
-                    <div class="order-calc-box deal-earn">
+                    <div class="order-calc-box deal-earn mx-1">
                         <span class="box-tile">Your commision <span
                                 class="commsion-status">({{$orders->payment_status?Str::ucfirst($orders->payment_status):'Pending'}})</span></span>
                         <span class="box-amount">₹ {{$orders->commission}}</span>

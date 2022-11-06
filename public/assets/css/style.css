@@ -2956,3 +2956,11 @@ section.refernearn-user-dash {
     background: #000;
 	}
 }
+section.hero-slider {
+    box-shadow: -4px 2px 6px 0px rgb(0 0 0 / 20%);
+}
+@media only screen and (max-width: 380px){
+.single-slider-item {
+    padding: 75px 0;
+}
+}

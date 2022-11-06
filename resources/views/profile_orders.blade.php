@@ -83,7 +83,7 @@
                         <span class="box-amount">₹ {{$list->product_price}}</span>
 
                     </div>
-                    <div class="order-calc-box deal-earn">
+                    <div class="order-calc-box deal-earn mx-1">
                         <span class="box-tile">Your commision <span class="commsion-status">({{$list->payment_status?$list->payment_status:'Pending'}})</span></span>
                         <span class="box-amount">₹ {{$list->commission}}</span>
 
