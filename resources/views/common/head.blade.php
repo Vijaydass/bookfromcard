@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="shortcut icon" href="https://preview.uideck.com/items/smash/assets/images/favicon.png" type="image/png">
+    <link rel="shortcut icon" href="{{asset('favicon.png')}}" type="image/png">
     <link rel="stylesheet" href="{{asset('assets/css/slick.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/magnific-popup.css')}}">
     <!-- <link rel="stylesheet" href="{{asset('assets/css/LineIcons.css')}}"> -->

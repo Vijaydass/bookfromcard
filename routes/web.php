@@ -113,7 +113,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('profile',[AuthController::class,'profile'])->name('profile');
     Route::get('user-orders',[AuthController::class,'user_orders']);
     Route::get('user-order/{id}',[AuthController::class,'user_single_order']);
-    Route::post('single_order_update',[AuthController::class,'single_order_update'])->name('single_order_update.order');
+    
     Route::get('refer_earn',[AuthController::class,'refer_earn']);
     Route::get('referral_user',[AuthController::class,'referral_user']);
     Route::post('profile',[AuthController::class,'profile_update'])->name('profile_update.user');
@@ -122,7 +122,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('logout',[AuthController::class,'logout'])->name('user.logout');
 });
 
-
+Route::post('single_order_update',[AuthController::class,'single_order_update'])->name('single_order_update.order');
 
 Route::get('/cache', function () {
     Artisan::call('cache:clear');

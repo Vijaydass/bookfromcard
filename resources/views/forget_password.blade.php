@@ -85,7 +85,7 @@ function otpVerify() {
         },
         // dataType: 'JSON',
         success: function(response) {
-            document.getElementById("sent-message").innerHTML = "You are password change succesfully";
+            document.getElementById("sent-message").innerHTML = "Your password has been changed successfully";
             document.getElementById("sent-message").classList.add("d-block");
         }
     });
