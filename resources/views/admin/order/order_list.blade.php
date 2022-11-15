@@ -39,8 +39,8 @@
                             <tbody>
                                 @foreach($orders as $list)
                                 <tr>
-                                    <td><a href="#" class="text-primary fw-bold">{{$list->name}}</a></td>
-                                    <td><a href="#" class="text-primary fw-bold">{{$list->phone}}</a></td>
+                                    <td><a href="#" class="text-primary fw-bold">{{$list->order_name}}</a></td>
+                                    <td><a href="#" class="text-primary fw-bold">{{$list->order_phone_number}}</a></td>
                                     <td><a href="#" class="text-primary fw-bold">{{$list->product_name}}</a></td>
                                     <th scope="row">
                                         <img src="{{asset('storage/'.$list->product_img)}}">

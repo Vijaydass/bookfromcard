@@ -21,7 +21,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = Product::with('store:id,name as store_name')->get();
+        $product = Product::with('store:id,name as store_name')->where(['products.status'=> 1])->get();
         // dd($product->toArray());
         return view('admin.product.product_list',compact('product'));
     }
@@ -30,9 +30,9 @@ class ProductController extends Controller
     {
         $orders = Orders::join('products', 'orders.product_id', '=', 'products.id')
                           ->join('users', 'orders.user_id', '=', 'users.id')
-                          ->get(['orders.*','users.*','orders.id as order_id', 'products.name as product_name','products.image as product_img',
+                          ->orderBy('orders.id', 'DESC')
+                          ->get(['orders.*','users.*','orders.id as order_id', 'orders.name as order_name','orders.phone_number as order_phone_number', 'products.name as product_name','products.image as product_img',
                             'products.price as product_price','products.commission as commission']);
-        
         return view('admin.order.order_list',compact('orders'));
     }
 
@@ -243,7 +243,8 @@ class ProductController extends Controller
     public function delete(Request $request,$id){            
         $model = Product::find($id);
          if (!is_null($model)) {
-             $model->delete();
+             $model->status = 0;
+             $model->save();
          }
         $request->session()->flash('message','Product Deleted Successfully');
         return redirect('own-cms/products');
