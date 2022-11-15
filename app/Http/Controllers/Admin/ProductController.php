@@ -136,7 +136,7 @@ class ProductController extends Controller
             'name'=>'required',
             'phone_number'=>'required|min:10|max:10',
             'expected_date'=>'required',
-            'files.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'files.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:20048'
          ]);
          $user = User::find($request->post('user_id'));
 

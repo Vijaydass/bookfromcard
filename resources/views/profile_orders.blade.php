@@ -5,7 +5,7 @@
         @if(Session::has('message'))
             <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
                 <i class="fa fa-check"></i><strong>Success!</strong> {{ Session::get('message') }}
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
+                <button type="button" class="btn-close btn-close-white close" data-dismiss="alert"
                     aria-label="Close"></button>
             </div>
             @endif
@@ -98,7 +98,7 @@
         </a>
         @endforeach
         @else
-        <h4 class="title text-warning">Sorry no Orders is available right now</h4>
+        <h4 class="title text-warning">You have not started any deals yet!</h4>
         @endif
     </div>
 </section>

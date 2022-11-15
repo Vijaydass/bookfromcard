@@ -6,44 +6,47 @@
         <!-- <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                 <img class="d-block w-100" src="">
             </div> -->
+            <a href="{{ $loop->last ? 'https://bookfromcard.com/refer_earn' : '#' }}" class="single-slider-item">
         <div class="single-slider-item set-bg" data-setbg="{{asset('storage/'.$item->image)}}">
         </div>
+        </a>
         @endforeach
     </div>
 </section>
 <!-- Hero Slider End -->
 
 <!-- Latest Product Begin -->
-<section class="latest-products spad">
+<section class="latest-products pb-5 pt-5">
     <div class="container">
         <div class="product-filter">
             <div class="row">
                 <div class="col-12 text-left">
+                    @if(Session::has('message'))
+                    <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
+                        <i class="fa fa-check"></i><strong>Success!</strong> {{ Session::get('message') }}
+                        <button type="button" class="btn-close btn-close-white close" data-dismiss="alert"
+                            aria-label="Close"></button>
+                    </div>
+                    @endif
+                    @if(Session::has('error'))
+                    <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
+                        <i class="fa fa-check"></i><strong>Error!</strong> {{ Session::get('error') }}
+                        <button type="button" class="btn-close btn-close-white close" data-dismiss="alert"
+                            aria-label="Close"></button>
+                    </div>
+                    @endif                    
                     <div class="section-title">
                         @if(count($product) > 0)
                         <h2 class="text-sm-center">Current Requirements</h2>
                         @else
-                        <h4 class="text-sm-center text-warning">Sorry no deal is available right now</h4>
+                        <h4 class="text-sm-center text-warning no-deal">You have not started any deals yet</h4>
                         @endif
                     </div>
                 </div>
             </div>
         </div>
         <div class="row" id="product-list">
-            @if(Session::has('message'))
-            <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
-                <i class="fa fa-check"></i><strong>Success!</strong> {{ Session::get('message') }}
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
-                    aria-label="Close"></button>
-            </div>
-            @endif
-            @if(Session::has('error'))
-            <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
-                <i class="fa fa-check"></i><strong>Error!</strong> {{ Session::get('error') }}
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
-                    aria-label="Close"></button>
-            </div>
-            @endif
+            
             @if(count($product) > 0)
             @foreach($product as $item)
             @if(Str::lower($item->store->name) === 'amazon')

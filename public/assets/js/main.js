@@ -119,9 +119,9 @@
     /*------------------
         Magnific Popup
     --------------------*/
-    $('.pop-up').magnificPopup({
+    /*$('.pop-up').magnificPopup({
         type: 'image'
-    });
+    });*/
 
     /*-------------------
 		Sort Select
@@ -170,5 +170,21 @@
     $(".payment-method ul li label").on('click', function () {
         $(this).toggleClass('active');
     });
+
+    /*---------------------
+         Fixed footer
+    --------------------*/
+    var footerHeight = $('.footer-section').outerHeight();
+    $('body').css('padding-bottom', footerHeight);
+    
+    /*---------------------
+         Auto Hide Message
+    --------------------*/
+    window.setTimeout(function() {
+    $(".alert-success").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+    });
+}, 4000);
+    
 
 })(jQuery);

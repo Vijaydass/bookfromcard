@@ -33,7 +33,6 @@
 
 html,
 body {
-	height: 100%;
 	font-family: "Montserrat", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
@@ -750,8 +749,7 @@ ol {
 -----------------------*/
 
 .latest-products {
-	padding-top: 30px;
-	padding-bottom: 65px;
+
 }
 
 .product-filter {
@@ -920,8 +918,9 @@ ol {
 -----------------------*/
 
 .footer-section {
-	background: #262626;
-	padding-bottom: 0;
+    background: #262626;
+    padding-bottom: 0;
+    z-index: -1;
 }
 
 .newslatter-form {
@@ -2794,8 +2793,9 @@ a:hover {
     margin-top: 0;
 }
 .latest-products {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    display: flex;
+    min-height: 40%;
+    align-items: center;
 }
 .product-filter .section-title{
 	margin-bottom:  0px;
@@ -2983,4 +2983,19 @@ a.back-to-top {
     text-align: center;
     color: #000000;
 }
-
+.card {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+body .text-warning{
+    color: #8d8d8d!important;
+}
+.footer-section {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+body section {
+    background: #fff;
+}

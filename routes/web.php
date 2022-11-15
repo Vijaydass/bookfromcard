@@ -124,8 +124,8 @@ Route::group(['middleware'=>'auth'],function(){
 
 Route::post('single_order_update',[AuthController::class,'single_order_update'])->name('single_order_update.order');
 
-Route::get('/cache', function () {
-    Artisan::call('cache:clear');
+Route::get('/clear-cache', function () {
+     $exitCode = Artisan::call('cache:clear');
 });
 Route::get('/link', function () {
     Artisan::call('storage:link');

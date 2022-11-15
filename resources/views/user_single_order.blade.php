@@ -6,14 +6,14 @@
             @if(Session::has('message'))
             <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
                 <i class="fa fa-check"></i><strong>Success!</strong> {{ Session::get('message') }}
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
+                <button type="button" class="btn-close btn-close-white close" data-dismiss="alert"
                     aria-label="Close"></button>
             </div>
             @endif
             @if(Session::has('errormessage'))
             <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
                 <strong>Error!</strong> {{ Session::get('errormessage') }}
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
+                <button type="button" class="btn-close btn-close-white close" data-dismiss="alert"
                     aria-label="Close"></button>
             </div>
             @endif
@@ -21,7 +21,7 @@
             @foreach ($errors->all() as $error)
             <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
                 <i class="fa fa-close"></i><strong>Error!</strong> {{ $error }}
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
+                <button type="button" class="btn-close btn-close-white close" data-dismiss="alert"
                     aria-label="Close"></button>
             </div>
             @endforeach

@@ -9,7 +9,7 @@
                         <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show"
                             role="alert">
                             <i class="fa fa-check"></i><strong>Success!</strong> {{ Session::get('success') }}
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
+                            <button type="button" class="btn-close btn-close-white close" data-dismiss="alert"
                                 aria-label="Close"></button>
                         </div>
                         @endif
@@ -17,7 +17,7 @@
                         <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show"
                             role="alert">
                             <i class="fa fa-check"></i><strong>Error!</strong> {{ Session::get('error') }}
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
+                            <button type="button" class="btn-close btn-close-white close" data-dismiss="alert"
                                 aria-label="Close"></button>
                         </div>
                         @endif

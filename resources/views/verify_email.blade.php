@@ -10,7 +10,7 @@
                         @endif
                         <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" id="sent-message" style="display:none" role="alert">
                             <i class="fa fa-check"></i><strong>Success!</strong> Otp Successfully send
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
+                            <button type="button" class="btn-close btn-close-white close" data-dismiss="alert"
                                 aria-label="Close"></button>
                         </div>
                         <form action="{{ route('verifyemail') }}" method="post">
