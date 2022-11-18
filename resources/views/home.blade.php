@@ -39,7 +39,7 @@
                         @if(count($product) > 0)
                         <h2 class="text-sm-center">Current Requirements</h2>
                         @else
-                        <h4 class="text-sm-center text-warning no-deal">You have not started any deals yet</h4>
+                        <h4 class="text-sm-center text-warning no-deal">Sorry, no deals available right now!</h4>
                         @endif
                     </div>
                 </div>
